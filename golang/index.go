@@ -1,6 +1,11 @@
+
 package main
-import "fmt"
-import "time"
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func BubbleSort(array[] int)[]int {
    for i:=0; i< len(array)-1; i++ {
@@ -12,10 +17,17 @@ func BubbleSort(array[] int)[]int {
    }
    return array
 }
+
 func main() {
-   array:= []int{11, 14, 3, 8, 18, 17, 43};
-   start := time.Now()
-   BubbleSort(array);
-    elapsed := time.Since(start)
-    fmt.Printf("Execution time %s", elapsed)
+	rand.Seed(time.Now().UnixNano())
+	array := make([]int, 10000)
+	for i := 0; i < 10000; i++ {
+		array[i] = rand.Intn(10000)
+	}
+
+	start := time.Now()
+	BubbleSort(array)
+	elapsed := time.Since(start)
+
+	fmt.Printf("Execution time: %s\n", elapsed)
 }
